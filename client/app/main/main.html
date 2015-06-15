@@ -1,17 +1,13 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
-
 <div ng-if="!isLoggedIn()">
   <header class="hero-unit" id="banner">
-    <h1>Use AxisJS online <em>for free</em></h1>
-    <!-- <slick infinte="true" arrows="false" dots="false" autoplay="true" class="carousel" autoplay-speed="3000" speed="1000"></slick> -->
-
+    <h1>Axis v1</h1>
     <div class="container">
       <div>
         <c3-demo></c3-demo>
         <p class="lead">Create interactive charts with <strong>AxisJS</strong>...</p>
       </div>
       <div>
-        <p class="lead">...and host them for free on <i class="fa fa-github"></i></p>
+        <p class="lead">...and put them in Deck or somewhere else cool!</p>
       </div>
     </div>
   </header>
@@ -21,8 +17,7 @@
   <header class="hero-unit" id="banner">
     <div class="container">
       <h1>Welcome to Axis!</h1>
-      <h5 ng-if="!repoSet">Note: You still need to set a GitHub repo to use <a href="/settings">here</a>!</h5>
-      <div class="row options" ng-if="repoSet">
+      <div class="row options">
         <div class="new col-xs-6"><a ng-href="/new"><i class="fa-file-image-o fa fa-5x"></i><br />New</a></div>
         <div class="edit col-xs-6"><a ng-href="/edit"><i class="fa-folder-open-o fa fa-5x"></i><br />Edit</a></div>
       </div>
@@ -30,34 +25,12 @@
   </header>
 </div>
 
-<section class="container">
-  <h2>A project by...</h2>
-  <br />
-  <div class="row project-by">
-    <div class="col-xs-4">
-      <a href="http://www.thetimes.co.uk"><img src="assets/images/Times_Masthead_white.png" /></a> <br />
-      <a href="http://www.thesundaytimes.co.uk"><img src="assets/images/sunday-times-magazine-masthead.png" /></a>
-    </div>
-
-    <div class="col-xs-4">
-      <a href="http://www.thetimes.co.uk/redbox"><img src="assets/images/redbox.png" /></a>
-    </div>
-
-    <div class="col-xs-4">
-      <a href="http://www.thesundaytimes.co.uk"><img src="assets/images/robot.png" /></a>
-    </div>
-  </div>
-</section>
-
 <footer class="footer">
   <div class="container">
-      <p>AxisMaker |
-        <a href="https://twitter.com/aendrew">Ændrew Rininsland (@aendrew)</a>,
-        <a href="https://medium.com/digital-times/">Times Digital Development</a> |
-         <a href="https://github.com/aendrew/axisbuilder/issues?state=open">Issues</a>
-      </p>
-      <p>
-        <small>Although we totally <i class="fa fa-heart"></i> <i class="fa fa-github"></i>, neither <a href="http:/www.axisjs.org">AxisJS</a>, AxisMaker, <a href="http://www.thetimes.co.uk">The Times</a> nor <a href="http://thesundaytimes.co.uk">Sunday Times</a> is affiliated with <a href="https://github.com">GitHub</a>.</small>
-      </p>
+    <p>Axis S3 v1 |
+      <a href="https://twitter.com/aendrew">Ændrew Rininsland (@aendrew)</a>,
+      <a href="https://medium.com/digital-times/">Times Digital Development</a> |
+       <a href="https://github.com/aendrew/axisbuilder/issues?state=open">Issues</a>
+    </p>
   </div>
 </footer>

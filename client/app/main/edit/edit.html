@@ -1,5 +1,3 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
-
 <div class="container axisJS">
   <div class="row">
     <div class="col-sm-12">
@@ -29,7 +27,6 @@
 
     <!-- Display axisJS if argument given -->
     <div ng-show="!!itemName">
-      <h4>Editing: <a ng-href="https://cdn.rawgit.com/{{username}}/{{repo}}/{{sha.substr(0, 7)}}/{{filename}}/index.html">{{itemName}}</a> - <small><a ng-href="https://cdn.rawgit.com/{{username}}/{{repo}}/{{sha.substr(0, 7)}}/{{filename}}/index.html">{{username}}/{{repo}}/{{sha.substr(0, 7)}}/{{filename}}</a></small></h4>
       <iframe load-chart id="axisJS" border="0" width="100%" height="auto"></iframe>
     </div>
 

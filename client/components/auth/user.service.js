@@ -12,10 +12,10 @@ angular.module('axismakerApp')
           controller: 'password'
         }
       },
-      changeRepo: {
-        method: 'PUT',
+      getCharts: {
+        method: 'GET',
         params: {
-          controller: 'repo'
+          controller: 'charts'
         }
       },
       get: {

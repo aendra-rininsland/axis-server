@@ -1,6 +1,7 @@
 'use strict';
 
 var User = require('./user.model');
+var Chart = require('../chart/chart.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -80,19 +81,13 @@ exports.changePassword = function(req, res, next) {
 };
 
 /**
- * Change a user's repo
+ * Fetch a user's charts
  */
-exports.changeRepo = function(req, res, next) {
+exports.getCharts = function(req, res, next) {
   var userId = req.user._id;
-  var newRepo = String(req.body.repoURI);
 
-  User.findById(userId, function(err, user) {
-    user.repoURI = newRepo;
-    user.save(function(err, a, b) {
-      if (err) return validationError(res, err);
-      console.dir([err, a, b]);
-      res.send(200);
-    });
+  Chart.find({owner: userId}, function(err, charts) {
+    res.json(charts);
   });
 };
 

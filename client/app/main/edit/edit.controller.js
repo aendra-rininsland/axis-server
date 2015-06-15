@@ -1,67 +1,32 @@
 'use strict';
 
 angular.module('axismakerApp')
-  .controller('EditCtrl', function ($scope, $window, $location, Auth, $stateParams, $modal, $http, $compile) {
-    var branch = 'gh-pages'; // change to gh-pages in prod
+  .controller('EditCtrl', function ($scope, $window, $location, User, $stateParams, $modal, $http) {
     $scope.itemName = typeof $stateParams.item !== 'undefined' ? $stateParams.item : undefined;
     $scope.filename = $scope.itemName;
-    console.log($scope.filename);
-    var token = Auth.getCurrentUser().githubToken;
-    var github = new Github({token: token, auth: 'oauth'});
-    var currentRepoURI = Auth.getCurrentUser().repoURI;
-    var repoName = currentRepoURI.match(/git:\/\/github\.com\/([^/]+)\/(.+?)\.git$/);
-    $scope.username = repoName[1];
-    $scope.repo = repoName[2];
-    var repo = github.getRepo(repoName[1], repoName[2]);
-
-    var getCharts = function() {
-      repo.getTree(branch, function(err, tree){
-        // Create a list of directories
-        var directories = [];
-        angular.forEach(tree, function(item){
-          if (item.type === 'tree') {
-            directories.push(item);
-          }
-        });
-
-        // Filter for directories with axis.json
-        $scope.directories = [];
-        angular.forEach(directories, function(item){
-          repo.getCommits({path: item.path + '/index.html'}, function(err, commits){
-            // console.clear(); // hide ugly 404s.
-            if (commits) {
-              var sorted = commits.sort(function(a, b){
-                return Date(a.commit.committer.date) > Date(b.commit.committer.date);
-              });
-              item.updated = sorted[0].commit.committer.date;
-              $scope.directories.push(item);
-              $scope.$apply();
-            }
-          });
-        });
-      });
-    }
-
 
     // Item isn't set, let user choose
     if (!$scope.itemName) {
-      getCharts();
+      $scope.charts = User.getCharts();
     } else {
-      repo.read(branch, $scope.itemName + '/axis.json', function(err, config){
-        if (err) {
-          $window.alert('This isn\'t an Axis chart!');
-          $location.path = '/edit';
-        } else { // Load config object into Axis
-          $scope.axisConfig = config;
-          repo.getRef('heads/' + branch, function(err, sha){
-            if (sha) {
-              $scope.sha = sha;
-              $scope.$apply();
-            }
-          });
-          $scope.$apply();
-        }
-      });
+      // load some chartz
+      
+      
+      // repo.read(branch, $scope.itemName + '/axis.json', function(err, config){
+      //   if (err) {
+      //     $window.alert('This isn\'t an Axis chart!');
+      //     $location.path = '/edit';
+      //   } else { // Load config object into Axis
+      //     $scope.axisConfig = config;
+      //     repo.getRef('heads/' + branch, function(err, sha){
+      //       if (sha) {
+      //         $scope.sha = sha;
+      //         $scope.$apply();
+      //       }
+      //     });
+      //     $scope.$apply();
+      //   }
+      // });
     }
 
     $scope.editChart = function(path) {
@@ -69,13 +34,7 @@ angular.module('axismakerApp')
     };
 
     $scope.deleteChart = function(path) {
-      repo.remove(branch, path + '/axis.json', function(err) {
-        if (err) console.dir(err);
-        repo.remove(branch, path + '/index.html', function(err){
-          if (err) console.dir(err);
-          getCharts();
-        });
-      });
+      // Chart.delete()
     }
 
     // Update chart
