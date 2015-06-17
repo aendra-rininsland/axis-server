@@ -13,7 +13,7 @@ exports.index = function(req, res) {
 
 // Get a single chart
 exports.show = function(req, res) {
-  Chart.findOne({title: req.params.title, owner: req.user.email}, function (err, chart) {
+  Chart.findById(req.params.id, function (err, chart) {
     if(err) { return handleError(res, err); }
     if(!chart) { return res.send(404); }
     return res.json(chart);
@@ -22,11 +22,10 @@ exports.show = function(req, res) {
 
 // Creates a new chart in the DB.
 exports.create = function(req, res) {
-  console.dir(req.body);
-  // Chart.create(req.body, function(err, chart) {
-  //   if(err) { return handleError(res, err); }
-  //   return res.json(201, chart);
-  // });
+  Chart.create(req.body, function(err, chart) {
+    if(err) { return handleError(res, err); }
+    return res.json(201, chart);
+  });
 };
 
 // Updates an existing chart in the DB.

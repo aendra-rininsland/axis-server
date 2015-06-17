@@ -8,7 +8,6 @@ angular.module('axismakerApp')
 
     if ($scope.isLoggedIn()) {
       User.get().$promise.then(function(data){
-        console.log(data);
         // Check if repo is set:
         if (typeof data.repoURI !== 'undefined') {
           $scope.repoSet = true;
