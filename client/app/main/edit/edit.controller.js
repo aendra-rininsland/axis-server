@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('axismakerApp')
-  .controller('EditCtrl', function ($scope, $window, $location, Chart, $stateParams, $modal, $http) {
+  .controller('EditCtrl', function ($scope, $window, $location, Chart, $stateParams, $modal) {
     $scope.itemId = typeof $stateParams.item !== 'undefined' ? $stateParams.item : undefined;
     
     if (!$scope.itemId) { // Item isn't set, let user choose
@@ -16,7 +16,7 @@ angular.module('axismakerApp')
     }
 
     $scope.editChart = function(path) {
-      $location.path('/edit/' + path);
+      $location.path('/edit/' + path); // Reload page with itemId set.
     };
 
     $scope.deleteChart = function(itemId) {
