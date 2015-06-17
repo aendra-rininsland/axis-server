@@ -7,13 +7,17 @@ angular.module('axismakerApp')
     },
     {
       query: {
-        method: 'GET'
+        method: 'GET',
+        isArray: true
       },
       post: {
         method: 'POST'
       },
       update: {
         method: 'PUT'
+      },
+      delete: {
+        method: 'DELETE'
       }
     });
   });

@@ -25,9 +25,15 @@
 }
 
 .modal-body {
-  min-height: 500px;
+  min-height: 350px;
+  
+  .chart-url {
+    font-weight: bold;
+    color: $brand-danger;
+  }
+  
   iframe {
-    min-height: 500px;
+    min-height: 350px;
     border: none;
   }
 }

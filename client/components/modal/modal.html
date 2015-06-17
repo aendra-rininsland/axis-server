@@ -3,8 +3,14 @@
   <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
 </div>
 <div class="modal-body">
-  <p ng-bind="modal.chartUrl" contentEditable="true"></p>
+  <h4 class="chart-url" ng-bind="modal.chartUrl" contentEditable="true"></h4>
+  <p>
+    <a ng-href="{{modal.chartUrl}}" target="_blank">Open in new window <i class="fa fa-search-plus"></i></a> | 
+    <a href popover="Copied to clipboard!" popover-trigger="focus" popover-show="{{copied}}" ui-zeroclip zeroclip-copied="copied=true" zeroclip-model="modal.chartUrl">Copy to clipboard <i class="fa fa-copy"></i></a>
+  </p>
+  <h3>Preview</h3>
+  <iframe ng-src="{{modal.chartUrl}}" width="100%" height="350"></iframe>
 </div>
-<div class="modal-footer">
+<div class="modal-footer" ng-if="modal.buttons">
   <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button>
 </div>

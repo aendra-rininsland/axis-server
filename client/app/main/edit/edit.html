@@ -2,9 +2,8 @@
   <div class="row">
     <div class="col-sm-12">
       <h1>Edit <i class="fa fa-folder-open-o"></i></h1>
-
       <!-- Display item list if no URL argument -->
-      <div class="col-sm-12" ng-show="!itemName && directories">
+      <div class="col-sm-12" ng-show="!itemId && charts">
         <table class="item-table table table-hover">
           <thead>
             <tr>
@@ -15,18 +14,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="directory in directories | orderBy: '-updated'">
-              <td><button class="btn btn-success btn-xs" ng-click="editChart(directory.path)">Edit <i class="fa fa-pencil-square"></i></button></td>
-              <td>{{directory.path}}</td>
-              <td>{{directory.updated}}</td>
-              <td><button class="btn btn-danger btn-xs" ng-click="deleteChart(directory.path)"><i class="fa fa-times"></i></button></td>
+            <tr ng-repeat="chart in charts | orderBy: '-timestamp'">
+              <td><button class="btn btn-success btn-xs" ng-click="editChart(chart._id)">Edit <i class="fa fa-pencil-square"></i></button></td>
+              <td>{{chart.title}}</td>
+              <td>{{chart.timestamp}}</td>
+              <td><button class="btn btn-danger btn-xs" ng-click="deleteChart(chart._id)"><i class="fa fa-times"></i></button></td>
             </tr>
             </tbody>
         </table>
       </div>
 
     <!-- Display axisJS if argument given -->
-    <div ng-show="!!itemName">
+    <div ng-show="!!itemId">
+      <input class="chart-title" type="text" ng-model="itemTitle" contentEditable="true"></input>
       <iframe load-chart id="axisJS" border="0" width="100%" height="auto"></iframe>
     </div>
 

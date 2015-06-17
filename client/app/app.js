@@ -7,10 +7,11 @@ angular.module('axismakerApp', [
   'ui.router',
   'ui.bootstrap',
   'ngPostMessage',
-  'slick'
+  'slick',
+  'zeroclipboard'
 ])
 
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiZeroclipConfigProvider) {
     $urlRouterProvider
       .otherwise('/');
 
@@ -38,8 +39,13 @@ angular.module('axismakerApp', [
         templateUrl: 'app/main/edit/edit.html',
         controller: 'EditCtrl'
       });
+      
+      // Set ZeroClipboard path
+      uiZeroclipConfigProvider.setZcConf({
+          swfPath: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf'
+      })
   })
-
+  
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {
       // Add authorization token to headers

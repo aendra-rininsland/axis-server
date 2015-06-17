@@ -3,9 +3,10 @@
 var _ = require('lodash');
 var Chart = require('./chart.model');
 
-// Get list of charts
+// Get list of user's charts
 exports.index = function(req, res) {
-  Chart.find(function (err, charts) {
+  var userEmail = req.user.email;
+  Chart.find({owner: userEmail}, function (err, charts) {
     if(err) { return handleError(res, err); }
     return res.json(200, charts);
   });
@@ -22,9 +23,12 @@ exports.show = function(req, res) {
 
 // Creates a new chart in the DB.
 exports.create = function(req, res) {
-  Chart.create(req.body, function(err, chart) {
+  var data = req.body;
+  data.owner = req.user.email;
+  data.timestamp = Date.now();
+  Chart.create(data, function(err, chart) {
     if(err) { return handleError(res, err); }
-    return res.json(201, chart);
+    return res.json(201, {url: req.protocol + '://' + req.get('host') + '/chart/' + chart.id});
   });
 };
 
@@ -37,7 +41,7 @@ exports.update = function(req, res) {
     var updated = _.merge(chart, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.json(200, chart);
+      return res.json(201, {url: req.protocol + '://' + req.get('host') + '/chart/' + chart.id});
     });
   });
 };

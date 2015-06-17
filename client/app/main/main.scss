@@ -1,4 +1,4 @@
-
+// Homepage
 #banner {
   border-bottom: none;
   margin-top: -20px;
@@ -17,8 +17,6 @@
   margin-top: 70px;
   border-top: 1px solid #E5E5E5;
 }
-
-
 
 .options {
   margin-top: 4em;
@@ -59,4 +57,13 @@ iframe#axisJS {
     max-width: 90%;
     max-height: 100px;
   }
+}
+
+
+// Edit/new pages
+input.chart-title {
+  border: 0;
+  font-size: 2em;
+  color: #666;
+  width: 100%;
 }
