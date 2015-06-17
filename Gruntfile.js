@@ -352,7 +352,6 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
-            'Procfile',
             'bower_components/**/*',
             'assets/images/{,*/}*.{webp}',
             'assets/images/*',
@@ -369,6 +368,7 @@ module.exports = function (grunt) {
           expand: true,
           dest: '<%= yeoman.dist %>',
           src: [
+            'Procfile',
             'package.json',
             'server/**/*'
           ]
