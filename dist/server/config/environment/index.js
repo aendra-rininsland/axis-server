@@ -41,17 +41,11 @@ var all = {
     }
   },
 
-  twitter: {
-    clientID:     process.env.TWITTER_ID || 'id',
-    clientSecret: process.env.TWITTER_SECRET || 'secret',
-    callbackURL:  (process.env.DOMAIN || '') + '/auth/twitter/callback'
-  },
-
-  github: {
-    clientID:     process.env.GITHUB_ID || 'id',
-    clientSecret: process.env.GITHUB_SECRET || 'secret',
-    callbackURL:  '/auth/github/callback'
-  },
+  google: {
+    clientID:     process.env.GOOGLE_CLIENT_ID || 'id',
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'secret',
+    callbackURL:  (process.env.DOMAIN || '') + '/auth/google/callback'
+  }
 
 };
 

@@ -352,6 +352,7 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
+            'Procfile',
             'bower_components/**/*',
             'assets/images/{,*/}*.{webp}',
             'assets/images/*',
@@ -389,12 +390,6 @@ module.exports = function (grunt) {
         connectCommits: false,
         message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
       },
-      heroku: {
-        options: {
-          remote: 'heroku',
-          branch: 'master'
-        }
-      },
       openshift: {
         options: {
           remote: 'openshift',
@@ -403,7 +398,7 @@ module.exports = function (grunt) {
       },
       deis: {
         options: {
-          remote: 'ssh://git@deis.apps.timesdev.tools:2222/axismaker.git',
+          remote: 'deis',
           branch: 'master'
         }
       }

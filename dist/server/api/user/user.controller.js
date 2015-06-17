@@ -1,6 +1,7 @@
 'use strict';
 
 var User = require('./user.model');
+var Chart = require('../chart/chart.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -59,40 +60,13 @@ exports.destroy = function(req, res) {
 };
 
 /**
- * Change a users password
+ * Fetch a user's charts
  */
-exports.changePassword = function(req, res, next) {
+exports.getCharts = function(req, res, next) {
   var userId = req.user._id;
-  var oldPass = String(req.body.oldPassword);
-  var newPass = String(req.body.newPassword);
 
-  User.findById(userId, function (err, user) {
-    if(user.authenticate(oldPass)) {
-      user.password = newPass;
-      user.save(function(err) {
-        if (err) return validationError(res, err);
-        res.send(200);
-      });
-    } else {
-      res.send(403);
-    }
-  });
-};
-
-/**
- * Change a user's repo
- */
-exports.changeRepo = function(req, res, next) {
-  var userId = req.user._id;
-  var newRepo = String(req.body.repoURI);
-
-  User.findById(userId, function(err, user) {
-    user.repoURI = newRepo;
-    user.save(function(err, a, b) {
-      if (err) return validationError(res, err);
-      console.dir([err, a, b]);
-      res.send(200);
-    });
+  Chart.find({owner: userId}, function(err, charts) {
+    res.json(charts);
   });
 };
 
