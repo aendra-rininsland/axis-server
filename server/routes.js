@@ -11,9 +11,9 @@ var hbs = require('express-hbs');
 
 module.exports = function(app) {
   // Use HBS templates
-  app.engine('hbs', hbs.express4({
+  app.engine('hbs', hbs.express4(/*{
     partialsDir: __dirname + '/views/partials'
-  }));
+  }*/));
   app.set('view engine', 'hbs');
   app.set('views', __dirname + '/views');
   
