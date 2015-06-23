@@ -30,19 +30,12 @@ module.exports = function(app) {
     var matched = urlRegEx.exec(req.oembed.url);
     if (matched !== null) {
       var chartId = matched[1];
-      Chart.findById(chartId, function(err, chart){
-        if (!chart) {
-          res.status(404).send('Not found');
-        } else {
-          app.render('chart.hbs', {chartTitle: chart.title, axisJSON: chart.config}, function(err, html){
-            res.oembed.rich(
-              html,
-              req.oembed.width || '100%',
-              req.oembed.height || '100%'
-            );
-          });
-        }
-      });
+      var html = '<iframe src="' + req.oembed.url + '" width="' + req.oembed.width || '100%' + '" height="' + req.oembed.height || '100%' + '"></iframe>'
+      res.oembed.rich(
+        html,
+        req.oembed.width || '100%',
+        req.oembed.height || '100%'
+      );
     } else {
       next();
     }

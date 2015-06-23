@@ -40,10 +40,10 @@ angular.module('axismakerApp', [
         controller: 'EditCtrl'
       });
       
-      // Set ZeroClipboard path
-      uiZeroclipConfigProvider.setZcConf({
-          swfPath: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf'
-      })
+    // Set ZeroClipboard path
+    uiZeroclipConfigProvider.setZcConf({
+      swfPath: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf'
+    });
   })
   
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
