@@ -8,7 +8,8 @@ angular.module('axismakerApp', [
   'ui.bootstrap',
   'ngPostMessage',
   'slick',
-  'zeroclipboard'
+  'zeroclipboard',
+  'LocalStorageModule'
 ])
 
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiZeroclipConfigProvider) {
@@ -72,7 +73,11 @@ angular.module('axismakerApp', [
     };
   })
 
-  .run(function ($rootScope, $location, Auth) {
+  .run(function ($rootScope, $location, Auth, localStorageService) {
+    if (!localStorageService.get('config')) {
+      localStorageService.set('config', 'themes/axis.config.yaml'); // Set config to Axis if not already set.
+    }
+    
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {

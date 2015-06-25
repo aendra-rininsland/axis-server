@@ -15,13 +15,14 @@
     "angular-ui-router": "~0.2.10",
     "angular-post-message": "~1.1.1",
     "jsonfn": "vkiryukhin/jsonfn",
-    "axisjs": "axis_s3",
+    "axisjs": "master",
     "angular-slick": "~0.1.18",
     "c3": "~0.4.10",
     "angular-bootstrap": "~0.12.1",
     "angular": "1.3.8",
     "angular-zeroclipboard": "~0.4.2",
-    "handsontable": "~0.14.1"
+    "handsontable": "~0.14.1",
+    "angular-local-storage": "~0.2.2"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
