@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('axismakerApp')
+angular.module('axisServer')
   .factory('Chart', function ($resource) {
     return $resource('/api/charts/:id/:controller', {
       id: '@_id'

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('axismakerApp')
+angular.module('axisServer')
   .directive('c3Demo', function ($timeout) {
     return {
       templateUrl: 'components/c3Demo/c3Demo.html',

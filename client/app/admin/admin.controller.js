@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('axismakerApp')
+angular.module('axisServer')
   .controller('AdminCtrl', function ($scope, $http, Auth, User) {
 
     // Use the User $resource to fetch all users

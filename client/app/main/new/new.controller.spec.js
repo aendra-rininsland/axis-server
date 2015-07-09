@@ -3,7 +3,7 @@
 describe('Controller: NewCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('axismakerApp'));
+  beforeEach(module('axisServer'));
 
   var NewCtrl, scope;
 

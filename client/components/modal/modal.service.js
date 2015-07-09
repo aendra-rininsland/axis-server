@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('axismakerApp')
+angular.module('axisServer')
   .factory('Modal', function ($rootScope, $modal) {
     /**
      * Opens a modal

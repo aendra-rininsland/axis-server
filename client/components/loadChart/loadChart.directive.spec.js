@@ -3,7 +3,7 @@
 describe('Directive: loadChart', function () {
 
   // load the directive's module
-  beforeEach(module('axismakerApp'));
+  beforeEach(module('axisServer'));
 
   var element,
     scope;

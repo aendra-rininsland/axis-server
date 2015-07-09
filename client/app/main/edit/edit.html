@@ -14,11 +14,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="chart in charts | orderBy: '-timestamp'">
+            <tr ng-repeat="(index, chart) in charts | orderBy: '-timestamp'">
               <td><button class="btn btn-success btn-xs" ng-click="editChart(chart._id)">Edit <i class="fa fa-pencil-square"></i></button></td>
               <td>{{chart.title}}</td>
               <td>{{chart.timestamp}}</td>
-              <td><button class="btn btn-danger btn-xs" ng-click="deleteChart(chart._id)"><i class="fa fa-times"></i></button></td>
+              <td><button class="btn btn-danger btn-xs" ng-click="deleteChart(chart._id, index)"><i class="fa fa-times"></i></button></td>
             </tr>
             </tbody>
         </table>

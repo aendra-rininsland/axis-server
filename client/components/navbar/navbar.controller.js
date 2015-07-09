@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('axismakerApp')
+angular.module('axisServer')
   .controller('NavbarCtrl', function ($scope, $location, Auth, $window) {
     $scope.menu = [
     // {

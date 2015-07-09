@@ -3,7 +3,7 @@
 describe('Directive: c3Demo', function () {
 
   // load the directive's module and view
-  beforeEach(module('axismakerApp'));
+  beforeEach(module('axisServer'));
   beforeEach(module('app/components/c3Demo/c3Demo/c3Demo.html'));
 
   var element, scope;

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('axismakerApp')
+angular.module('axisServer')
   .controller('NewCtrl', function ($scope, Auth, Chart, $compile, $window, $modal, $http) {
     $window.axisConfig = undefined; // clear global config from previous edits
     $scope.popoverText = 'A project name is required.';

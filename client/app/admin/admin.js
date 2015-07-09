@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('axismakerApp')
+angular.module('axisServer')
   .config(function ($stateProvider) {
     $stateProvider
       .state('admin', {

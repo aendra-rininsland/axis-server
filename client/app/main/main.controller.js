@@ -1,4 +1,4 @@
 'use strict';
 
-angular.module('axismakerApp')
+angular.module('axisServer')
   .controller('MainCtrl', function ($scope, $http) {});

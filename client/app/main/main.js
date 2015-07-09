@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('axismakerApp')
+angular.module('axisServer')
   .controller('MainCtrl', function(Auth, $scope, $location, User){
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.repoSet = false;

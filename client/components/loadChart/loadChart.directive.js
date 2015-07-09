@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('axismakerApp')
+angular.module('axisServer')
   .directive('loadChart', function () {
     return {
       restrict: 'A',

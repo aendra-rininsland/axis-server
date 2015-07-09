@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('axismakerApp')
+angular.module('axisServer')
   .controller('EditCtrl', function ($scope, $window, $location, Chart, $stateParams, $modal) {
     $scope.itemId = typeof $stateParams.item !== 'undefined' ? $stateParams.item : undefined;
     
@@ -19,8 +19,9 @@ angular.module('axismakerApp')
       $location.path('/edit/' + path); // Reload page with itemId set.
     };
 
-    $scope.deleteChart = function(itemId) {
+    $scope.deleteChart = function(itemId, index) {
       Chart.delete({id: itemId});
+      $scope.charts.splice(index, 1);
     };
 
     // Update chart

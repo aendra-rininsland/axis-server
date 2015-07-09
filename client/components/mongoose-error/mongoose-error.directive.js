@@ -3,7 +3,7 @@
 /**
  * Removes server error when user updates input
  */
-angular.module('axismakerApp')
+angular.module('axisServer')
   .directive('mongooseError', function () {
     return {
       restrict: 'A',
