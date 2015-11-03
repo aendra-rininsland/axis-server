@@ -4,7 +4,6 @@ angular.module('axisServer')
   .controller('MainCtrl', function(Auth, $scope, $location, User){
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.repoSet = false;
-    var userData;
 
     if ($scope.isLoggedIn()) {
       User.get().$promise.then(function(data){
@@ -16,9 +15,4 @@ angular.module('axisServer')
         }
       });
     }
-  })
-  .config(['$tooltipProvider', function($tooltipProvider){
-    $tooltipProvider.setTriggers({
-        'invalidFilename': 'validFilename'
-    });
-}]);
+  });

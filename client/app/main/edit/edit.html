@@ -26,7 +26,21 @@
 
     <!-- Display axisJS if argument given -->
     <div ng-show="!!itemId">
-      <input class="chart-title" type="text" ng-model="itemTitle" contentEditable="true"></input>
+      <form name="filenameForm" class="form-group" ng-class="{'has-error': filenameForm.itemTitle.$invalid, 'has-error': filenameForm.itemTitle.$invalid }">
+        <input
+          class="chart-title"
+          type="text"
+          ng-model="itemTitle"
+          name="itemTitle"
+          required
+          ng-class="{'form-control': filenameForm.itemTitle.$invalid}"
+          uib-popover="A project name is required."
+          popover-placement="bottom"
+          popover-is-open="filenameForm.itemTitle.$invalid"
+          popover-trigger="null"
+          placeholder="Please enter a project name here"
+          />
+        </form>
       <iframe load-chart id="axisJS" border="0" width="100%" height="auto"></iframe>
     </div>
 

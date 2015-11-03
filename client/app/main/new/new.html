@@ -5,7 +5,18 @@
       <form name="filenameForm">
         <div class="form-group" ng-class="{'has-error': filenameForm.filename.$invalid, 'has-success': !filenameForm.filename.$invalid}">
           <label class="control-label" for="filename">Project name</label>
-          <input required popover="{{popoverText}}" popover-placement="bottom" popover-show="{{filenameForm.filename.$invalid}}" name="filename" ng-model="filename" ng-model-options="{ updateOn: 'mousedown blur' }" placeholder="Please enter a project name here" type="text" class="form-control" id="filename">
+          <input
+            required
+            uib-popover="{{popoverText}}"
+            popover-placement="bottom"
+            popover-is-open="filenameForm.filename.$error.required"
+            popover-trigger="null"
+            name="filename"
+            ng-model="filename"
+            placeholder="Please enter a project name here"
+            type="text"
+            class="form-control"
+            id="filename">
         </div>
       </form>
       <iframe id="axisJS" src="bower_components/axisjs/dist/index.html" border="0" width="100%" height="auto"></iframe>
