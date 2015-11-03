@@ -40,13 +40,13 @@ angular.module('axisServer', [
         templateUrl: 'app/main/edit/edit.html',
         controller: 'EditCtrl'
       });
-      
+
     // Set ZeroClipboard path
     uiZeroclipConfigProvider.setZcConf({
       swfPath: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf'
     });
   })
-  
+
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {
       // Add authorization token to headers
@@ -74,10 +74,8 @@ angular.module('axisServer', [
   })
 
   .run(function ($rootScope, $location, Auth, localStorageService) {
-    if (!localStorageService.get('config')) {
-      localStorageService.set('config', 'themes/axis.config.yaml'); // Set config to Axis if not already set.
-    }
-    
+    localStorageService.set('defaultConfig', 'themes/axismaker.config.yaml'); // Set config to Axis if not already set.
+
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {

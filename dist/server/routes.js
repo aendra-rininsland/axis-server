@@ -30,7 +30,8 @@ module.exports = function(app) {
     var matched = urlRegEx.exec(req.oembed.url);
     if (matched !== null) {
       var chartId = matched[1];
-      var html = '<iframe src="' + req.oembed.url + '" width="' + req.oembed.width || '100%' + '" height="' + req.oembed.height || '100%' + '"></iframe>'
+      
+      var html = '<iframe src="' + req.oembed.url + '" width="' + (req.oembed.width || '100%') + '" height="' + (req.oembed.height || '100%') + '"></iframe>'
       res.oembed.rich(
         html,
         req.oembed.width || '100%',
@@ -48,7 +49,11 @@ module.exports = function(app) {
       if (!chart) {
         res.status(404).send('Not found');
       } else {
-        res.render('chart.hbs', {chartTitle: chart.title, axisJSON: chart.config});
+        res.render('chart.hbs', {
+          chartTitle: chart.title, 
+          axisJSON: chart.config,
+          oembedUrl: req.protocol + '://' + req.get('host') + '/oembed/?url=' + encodeURIComponent(req.protocol + '://' + req.get('host') + req.url)
+        });
       }
     });
   });
