@@ -30,17 +30,21 @@ module.exports = function(app) {
     var matched = urlRegEx.exec(req.oembed.url);
     if (matched !== null) {
       var chartId = matched[1];
-
-      var html = '<iframe src="' + req.oembed.url + '" width="' + (req.oembed.width || '100%') + '" height="' + (req.oembed.height || '100%') + '"></iframe>'
-      res.oembed.rich(
-        html,
-        req.oembed.width || '100%',
-        req.oembed.height || '100%',
-        {
-          provider_name: 'Axis',
-          provider_url: req.get('host')
-        }
-      );
+      res.render('oembed.hbs', {
+        src: req.oembed.url,
+        width: req.oembed.width || '100%',
+        height: req.oembed.height || '100%'
+      }, function(err, html){
+        res.oembed.rich(
+          html,
+          req.oembed.width || '100%',
+          req.oembed.height || '100%',
+          {
+            provider_name: 'Axis',
+            provider_url: req.get('host')
+          }
+        );
+      });
     } else {
       next();
     }
