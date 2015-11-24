@@ -5,6 +5,7 @@
 'use strict';
 
 var errors = require('./components/errors');
+var cors = require('cors');
 var Chart = require('./api/chart/chart.model.js');
 var oembed = require('connect-oembed');
 var hbs = require('express-hbs');
@@ -52,7 +53,7 @@ module.exports = function(app) {
 
 
   // Render a chart
-  app.get('/chart/:id', function(req, res, next){
+  app.get('/chart/:id', cors(), function(req, res, next){
     Chart.findById(req.params.id, function (err, chart) {
       if (!chart) {
         res.status(404).send('Not found');

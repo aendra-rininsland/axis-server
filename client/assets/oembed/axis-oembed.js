@@ -32,19 +32,45 @@
     document.getElementsByTagName('head')[0].appendChild(fileref);
   }
 
+  function spawnC3(chart, e){
+    function traverse(o,func) {
+      for (var i in o) {
+        o[i] = func.apply(this,[i,o[i]]);
+        if (o[i] !== null && typeof(o[i]) === 'object') {
+          traverse(o[i],func);
+        }
+      }
+    }
+
+    function evalFormatters(key, value) {
+      if (key === 'format' && typeof value === 'string') {
+        return eval('(' + value + ')'); // jshint ignore:line
+      } else {
+        return value;
+      }
+    }
+
+    var jsonResponse = JSON.parse(e.target.responseText);
+    var config = JSON.parse(jsonResponse.axisJSON);
+    config.bindto = '#' + chart.id;
+    config.width = undefined; // Override chart config's size attributes for responsive output.
+    config.height = undefined;
+    traverse(config, evalFormatters);
+
+    // Add a timeout to ensure C3 and D3 are loaded.
+    setTimeout(function(){
+      window.c3.generate(config);
+    }, 1000);
+  }
+
   // Instantiate charts
   for (var i = 0; i < charts.length; i++) {
     // Grab chart configuration
     xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', function(){
-      var c3Config = JSON.parse(this.responseText);
-      c3Config.bindto = charts[i];
-      c3Config.width = undefined; // Override chart config's size attributes for responsive output.
-      c3Config.height = undefined;
-      window.c3.generate(c3Config);
-    });
+    xhr.addEventListener('load', spawnC3.bind(null, charts[i]));
 
     xhr.open('GET', 'http://axis.timesdev.tools/chart/' + charts[i].dataset.axisId);
+    xhr.setRequestHeader('Accept', 'application/json');
     xhr.send();
   }
 })();
