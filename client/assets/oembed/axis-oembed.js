@@ -17,19 +17,19 @@
     fileref = document.createElement('script');
     fileref.setAttribute('type', 'text/javascript');
     fileref.setAttribute('src', d3CdnUrl);
-    document.appendChild(fileref);
+    document.getElementsByTagName('body')[0].appendChild(fileref);
   }
 
   if (typeof window.c3 === 'undefined') {
     fileref = document.createElement('script');
     fileref.setAttribute('type', 'text/javascript');
     fileref.setAttribute('src', c3CdnUrl);
-    document.appendChild(fileref);
+    document.getElementsByTagName('body')[0].appendChild(fileref);
 
     fileref = document.createElement('link');
     fileref.setAttribute('rel', 'stylesheet');
     fileref.setAttribute('href', c3CssCdnUrl);
-    document.appendChild(fileref);
+    document.getElementsByTagName('head')[0].appendChild(fileref);
   }
 
   // Instantiate charts
@@ -44,7 +44,7 @@
       window.c3.generate(c3Config);
     });
 
-    xhr.open('GET', 'http://axis.timesdev.tool/chart/' + charts[i].dataset.axisId);
+    xhr.open('GET', 'http://axis.timesdev.tools/chart/' + charts[i].dataset.axisId);
     xhr.send();
   }
 })();
