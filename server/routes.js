@@ -38,7 +38,7 @@ module.exports = function(app) {
         req.oembed.height || '100%',
         {
           provider_name: 'Axis',
-          provider_url: 'http://axis.timesdev.tools'
+          provider_url: req.get('host')
         }
       );
     } else {
@@ -53,11 +53,21 @@ module.exports = function(app) {
       if (!chart) {
         res.status(404).send('Not found');
       } else {
-        res.render('chart.hbs', {
-          chartTitle: chart.title,
-          axisJSON: chart.config,
-          oembedUrl: req.protocol + '://' + req.get('host') + '/oembed/?url=' + encodeURIComponent(req.protocol + '://' + req.get('host') + req.url)
-        });
+        if ((req.headers.accept && req.headers.accept === 'application/json') ||
+            (req.query.format && req.query.format === 'json')) {
+          var jsonResponse = {
+            axisJSON: chart.config,
+            chartTitle: chart.title,
+            oembedUrl: req.protocol + '://' + req.get('host') + '/oembed/?url=' + encodeURIComponent(req.protocol + '://' + req.get('host') + req.url.replace('format=json', ''))
+          };
+          res.json(jsonResponse);
+        } else {
+          res.render('chart.hbs', {
+            chartTitle: chart.title,
+            axisJSON: chart.config,
+            oembedUrl: req.protocol + '://' + req.get('host') + '/oembed/?url=' + encodeURIComponent(req.protocol + '://' + req.get('host') + req.url)
+          });
+        }
       }
     });
   });
