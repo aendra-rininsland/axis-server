@@ -31,7 +31,7 @@ module.exports = function(app) {
     if (matched !== null) {
       var chartId = matched[1];
       res.render('oembed.hbs', {
-        src: req.oembed.url,
+        id: chartId,
         width: req.oembed.width || '100%',
         height: req.oembed.height || '100%'
       }, function(err, html){
