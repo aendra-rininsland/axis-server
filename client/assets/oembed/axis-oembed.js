@@ -53,8 +53,7 @@
     var jsonResponse = JSON.parse(e.target.responseText);
     var config = JSON.parse(jsonResponse.axisJSON);
     config.bindto = '#' + chart.id;
-    config.width = undefined; // Override chart config's size attributes for responsive output.
-    config.height = undefined;
+    config.size = undefined; // Override chart config's size attributes for responsive output.
     traverse(config, evalFormatters);
 
     // Add a timeout to ensure C3 and D3 are loaded.
