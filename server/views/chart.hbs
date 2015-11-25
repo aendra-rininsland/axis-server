@@ -14,13 +14,28 @@
       (function(){
         var config = {{{axisJSON}}};
         // If you can figure out how to do this better, please talk to @aendrew.
-        config.axis.x.tick.format = function (b){return'series'===config.chartGlobalType&&'category'!==config.axis.x.type?config.axis.x.prefix+b.toFixed(config.axis.x.accuracy).toString()+config.axis.x.suffix:b;};
-        config.axis.y.tick.format = function (b){return'series'===config.chartGlobalType&&'category'!==config.axis.y.type?config.axis.y.prefix+b.toFixed(config.axis.y.accuracy).toString()+config.axis.y.suffix:b;};
-        config.axis.y2.tick.format = function (b){return'series'===config.chartGlobalType&&'category'!==config.axis.y2.type?config.axis.y2.prefix+b.toFixed(config.axis.y2.accuracy).toString()+config.axis.y2.suffix:b;};
-        config.donut.label.format = function (b,c){return(100*c).toFixed(config.chartAccuracy)+'%';};
-        config.pie.label.format = function (b,c){return(100*c).toFixed(config.chartAccuracy)+'%';};
-        config.gauge.label.format = function (b,c){return(100*c).toFixed(config.chartAccuracy)+'%';};
-        window.chart = c3.generate(config);
+        function traverse(o,func) {
+          for (var i in o) {
+            o[i] = func.apply(this,[i,o[i]]);
+            if (o[i] !== null && typeof(o[i]) === 'object') {
+              traverse(o[i],func);
+            }
+          }
+        }
+
+        function evalFormatters(key, value) {
+          if (key === 'format' && typeof value === 'string') {
+            return eval('(' + value + ')'); // jshint ignore:line
+          } else {
+            return value;
+          }
+        }
+
+        traverse(config, evalFormatters);
+
+        setTimeout(function(){
+          window.chart = c3.generate(config);
+        }, 500);
       })();
     </script>
   </body>
